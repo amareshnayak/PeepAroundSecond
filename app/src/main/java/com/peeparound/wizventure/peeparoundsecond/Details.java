@@ -43,13 +43,13 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icon_text_tabs);
-
-
-/*
-        Bundle bndl = getIntent().getExtras();
-        int getPosition = bndl.getInt("position");
-        String str = bndl.getString("places");
-*/
+        Bundle bndll = getIntent().getExtras();
+        int getPosition = bndll.getInt("position");
+        double lat=bndll.getDouble("lattitude");
+        double longitude=bndll.getDouble("longitude");
+        System.out.println("heyyyyyy"+getPosition);
+        System.out.println("heyyyyyyyyy"+lat);
+        System.out.println("heyyyyyyyy"+longitude);
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

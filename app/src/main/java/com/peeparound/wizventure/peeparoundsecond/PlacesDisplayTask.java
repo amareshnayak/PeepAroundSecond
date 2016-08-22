@@ -49,12 +49,12 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, List<HashMap<S
     protected void onPostExecute(List<HashMap<String, String>> list) {
       //  googleMap.clear();
 
-        List< String> d=new ArrayList<>();
-        List<HashMap<String,String>> bndl=new ArrayList<>();
+
+        HashMap<Integer,List<String>> bndl=new HashMap<>();
         for (int i = 0; i < list.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
             HashMap<String, String> googlePlace = list.get(i);
-
+            List< String> d=new ArrayList<>();
             double lat = Double.parseDouble(googlePlace.get("lat"));
             double lng = Double.parseDouble(googlePlace.get("lng"));
             String icon=googlePlace.get("icon");
@@ -68,18 +68,13 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, List<HashMap<S
             Log.d("placeNamee",""+placeName);
             Log.d("vicinityuu",""+vicinity);
             d.add(placeName);
+            d.add(vicinity);
+            d.add(icon);
+        bndl.put(i,d);
 
-
-
-
-
-            /*
-            markerOptions.position(latLng);
-            markerOptions.title(placeName + " : " + vicinity);
-            googleMap.addMarker(markerOptions);*/
         }
-        System.out.println("kkkkkkkkkk");
-        adapter=new LazyAdapter((ListActivity)ctx,d);
+        System.out.println("kkkkkkkkkk"+bndl.get(2));
+        adapter=new LazyAdapter((ListActivity)ctx,bndl);
         listView.setAdapter(adapter);
     }
 }

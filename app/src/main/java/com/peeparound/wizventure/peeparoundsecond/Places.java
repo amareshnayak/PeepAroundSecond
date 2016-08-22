@@ -14,6 +14,7 @@ public class Places {
         JSONArray jsonArray = null;
         try {
             jsonArray = jsonObject.getJSONArray("results");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -44,6 +45,7 @@ public class Places {
         String latitude = "";
         String longitude = "";
         String reference = "";
+        String icon = "";
 
         try {
             if (!googlePlaceJson.isNull("name")) {
@@ -55,7 +57,10 @@ public class Places {
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
             reference = googlePlaceJson.getString("reference");
+            icon=googlePlaceJson.getString("icon");
+
             googlePlaceMap.put("place_name", placeName);
+            googlePlaceMap.put("icon", icon);
             googlePlaceMap.put("vicinity", vicinity);
             googlePlaceMap.put("lat", latitude);
             googlePlaceMap.put("lng", longitude);

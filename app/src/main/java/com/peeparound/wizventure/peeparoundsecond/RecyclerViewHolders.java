@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -29,11 +28,6 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "getAdapterPosition = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-        //latitude=location.getLatitude();
-        //longitude=location.getLongitude();
-
-
 
             Intent inte=new Intent(ctx,ListActivity.class);
             inte.putExtra("position",getAdapterPosition());
