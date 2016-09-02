@@ -22,6 +22,7 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, List<HashMap<S
     ListView listView;
     LazyAdapter adapter;
     Context ctx;
+
     static final String KEY_TITLE = "title";
     PlacesDisplayTask(Context ctx){
 
@@ -70,7 +71,7 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, List<HashMap<S
             d.add(placeName);
             d.add(vicinity);
             d.add(icon);
-        bndl.put(i,d);
+          bndl.put(i,d);
 
         }
         System.out.println("kkkkkkkkkk"+bndl.get(2));

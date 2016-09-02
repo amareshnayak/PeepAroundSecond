@@ -87,7 +87,7 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
 
         list = (ListView) findViewById(R.id.list);
         list.setOnItemClickListener(this);
-        PlacesDisplayTask pc = new PlacesDisplayTask(this);
+
         Bundle bndl = getIntent().getExtras();
         str = bndl.getString("places");
 
@@ -115,7 +115,7 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
         Intent intent=new Intent(this,Details.class);
         Bundle bndl=new Bundle();
 
-      bndl.putInt("position",i);
+        bndl.putInt("position",i);
         bndl.putDouble("lattitude",mCurrentLocation.getLatitude());
         bndl.putDouble("longitude",mCurrentLocation.getLongitude());
         intent.putExtras(bndl);
@@ -208,7 +208,9 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
     private void updateUI() {
 
         latitude =mCurrentLocation.getLatitude();
+        System.out.println("++++++++++++"+latitude);
         longitude = mCurrentLocation.getLongitude();
+        System.out.println("+++++++++++++"+longitude);
         StringBuilder googlePlacesUrl = new StringBuilder(googleUrl);
         googlePlacesUrl.append("location=" + latitude + "," + longitude);
         googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);

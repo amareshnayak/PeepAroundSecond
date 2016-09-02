@@ -50,6 +50,7 @@ public class Details extends AppCompatActivity {
         System.out.println("heyyyyyy"+getPosition);
         System.out.println("heyyyyyyyyy"+lat);
         System.out.println("heyyyyyyyy"+longitude);
+        PlacesDisplayTask pc=new PlacesDisplayTask(this);
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -137,7 +138,7 @@ public class Details extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new OneFragment(), "Data");
         adapter.addFrag(new TwoFragment(), "TWO");
-        // adapter.addFrag(new ThreeFragment(), "THREE");
+
         viewPager.setAdapter(adapter);
     }
 
