@@ -87,7 +87,7 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
 
         list = (ListView) findViewById(R.id.list);
         list.setOnItemClickListener(this);
-
+        PlacesDisplayTask pc = new PlacesDisplayTask(this);
         Bundle bndl = getIntent().getExtras();
         str = bndl.getString("places");
 

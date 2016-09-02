@@ -50,7 +50,6 @@ public class Details extends AppCompatActivity {
         System.out.println("heyyyyyy"+getPosition);
         System.out.println("heyyyyyyyyy"+lat);
         System.out.println("heyyyyyyyy"+longitude);
-        PlacesDisplayTask pc=new PlacesDisplayTask(this);
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
