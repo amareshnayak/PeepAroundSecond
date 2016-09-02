@@ -13,14 +13,13 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 /**
  * Created by Amaresh on 24-07-2016.
  */
-public class ListActivity extends AppCompatActivity implements ConnectionCallbacks,OnConnectionFailedListener, LocationListener,AdapterView.OnItemClickListener{
+public class ListActivity extends AppCompatActivity implements ConnectionCallbacks,OnConnectionFailedListener,AdapterView.OnItemClickListener{
 
 
 
@@ -35,7 +34,7 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
     LazyAdapter adapter;
     String str;
 
-    public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 2000;
 
     /**
      * The fastest rate for active location updates. Exact. Updates will never be more frequent
@@ -171,35 +170,18 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    public void startUpdatesButtonHandler(View view) {
-        if (!mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = true;
 
-            startLocationUpdates();
-        }
-    }
 
     /**
      * Handles the Stop Updates button, and requests removal of location updates. Does nothing if
      * updates were not previously requested.
      */
-    public void stopUpdatesButtonHandler(View view) {
-        if (mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = false;
 
-            stopLocationUpdates();
-        }
-    }
 
     /**
      * Requests location updates from the FusedLocationApi.
      */
-    protected void startLocationUpdates() {
-        // The final argument to {@code requestLocationUpdates()} is a LocationListener
-        // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
-    }
+
 
 
     /**
@@ -229,20 +211,12 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
     /**
      * Removes location updates from the FusedLocationApi.
      */
-    protected void stopLocationUpdates() {
-        // It is a good practice to remove location requests when the activity is in a paused or
-        // stopped state. Doing so helps battery performance and is especially
-        // recommended in applications that request frequent location updates.
-
-        // The final argument to {@code requestLocationUpdates()} is a LocationListener
-        // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+
     }
 
     @Override
@@ -253,8 +227,9 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
         // location updates if the user has requested them.
 
         if (mGoogleApiClient.isConnected() && mRequestingLocationUpdates) {
-            startLocationUpdates();
+            //startLocationUpdates();
         }
+
     }
 
     @Override
@@ -262,7 +237,7 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
         super.onPause();
         // Stop location updates to save battery, but don't disconnect the GoogleApiClient object.
         if (mGoogleApiClient.isConnected()) {
-            stopLocationUpdates();
+            //stopLocationUpdates();
         }
     }
 
@@ -293,27 +268,16 @@ public class ListActivity extends AppCompatActivity implements ConnectionCallbac
         if (mCurrentLocation == null) {
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-            updateUI();
+            //updateUI();
         }
 
-        // If the user presses the Start Updates button before GoogleApiClient connects, we set
-        // mRequestingLocationUpdates to true (see startUpdatesButtonHandler()). Here, we check
-        // the value of mRequestingLocationUpdates and if it is true, we start location updates.
-        if (mRequestingLocationUpdates) {
-            startLocationUpdates();
-        }
+        updateUI();
     }
 
     /**
      * Callback that fires when the location changes.
      */
-    @Override
-    public void onLocationChanged(Location location) {
-        mCurrentLocation = location;
 
-       // updateUI();
-
-    }
 
     @Override
     public void onConnectionSuspended(int cause) {
